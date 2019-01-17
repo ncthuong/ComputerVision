@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Created on Thu Jan 17 20:38:41 2019
 
+@author: ncthu
+"""
 from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.vgg16 import preprocess_input, decode_predictions, VGG16
 
