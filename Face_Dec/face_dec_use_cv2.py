@@ -10,11 +10,8 @@ import cv2
 
 plt.rcParams["figure.figsize"] = (18, 12)
 face_cascade = cv2.CascadeClassifier("C:\\Users\\ncthu\\Anaconda3\\Lib\\site-packages\\cv2\data\\haarcascade_frontalface_default.xml")
-img = cv2.imread('anh.jpg')
+img = cv2.imread('cropface_input.HEIC')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-# cv2 đọc ảnh dạng BGR, matplotlib hiển thị dạng RGB nên
-# chuyển đôỉ BGR2RGB để hiển thị được chính xác màu
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 faces = face_cascade.detectMultiScale(gray, scaleFactor = 1.1, minNeighbors = 10)
 
@@ -23,3 +20,9 @@ for (x, y, w, h) in faces:
 
 plt.imshow(img)
 plt.show()
+
+faceId = 1
+for (x, y, w, h) in faces:
+    fileName = "face."+str(faceId)+ ".jpg"
+    cv2.imwrite(fileName, img[y:y+h, x:x+w])
+    faceId += 1
